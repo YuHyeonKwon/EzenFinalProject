@@ -69,7 +69,6 @@ public class PhotoController {
 	 *  - ${com.javalab.upload.path}
 	 *    - com.javalab.upload.path=C:\\filetest
 	 */
-    @Value("${com.javalab.upload.path}")
     private String uploadPath;
 	
 	private final GroupService groupService;
