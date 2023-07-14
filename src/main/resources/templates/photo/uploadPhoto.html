@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Photo</title>
+
+<link rel="stylesheet" href="/css/main/mainHeader.css">
+<link rel="stylesheet" href="/css/main/groupMainHeader.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/photo/uploadStyle.css}">
+<style>
+  .uploadResult {
+    width: 100%;
+    background-color: gray;
+    margin-top: 10px;
+  }
+
+  .uploadResult ul {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top;
+    overflow: auto;
+  }
+
+  .uploadResult ul li {
+    list-style: none;
+    padding: 10px;
+    margin-left: 2em;
+  }
+
+  .uploadResult ul li img {
+    width: 100px;
+  }
+</style>
+</head>
+<body>
+  <!-- header 태그 내용 -->
+  <div th:replace="~{etc/mainContainer::header}"></div>
+  <div th:replace="~{etc/groupMainHeader::header}"></div>
+  <h1>Upload Photo</h1>
+  <form th:action="@{/photo/uploadPhoto}" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="groupNo" th:value="${group.groupNo}">
+        <input type="hidden" name="userNo" th:value="${session.user.userNo}">
+        
+        <div>
+            <label th:for="photoTitle">제목:</label>
+            <input type="text" id="photoTitle" name="photoTitle" required>
+        </div>
+        
+        <div>
+            <label th:for="photoContent">내용:</label>
+            <textarea id="photoContent" name="photoContent" required></textarea>
+        </div>
+        
+        <div>
+            <label th:for="imageFile">이미지:</label>
+            <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+        </div>
+        
+        <div>
+            <input type="submit" value="업로드">
+        </div>
+    </form>
+
+</body>
+</html>
+	
